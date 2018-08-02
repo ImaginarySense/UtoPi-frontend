@@ -7,10 +7,19 @@
 class ScreenController : public QObject
 {
     Q_OBJECT
+    Q_ENUMS(RefreshTypes)
 public:
     explicit ScreenController(QObject *parent = nullptr);
-
-    Q_INVOKABLE void test(QVariant frame);
+    enum RefreshTypes
+    {
+        fast,
+        partial,
+        full
+    };
+    Q_INVOKABLE void fastRefresh(QVariant frame);
+    Q_INVOKABLE void partialRefresh(QVariant frame);
+    Q_INVOKABLE void fullRefresh(QVariant frame);
+    void refresh(RefreshTypes refreshCode, QVariant frame);
 
 signals:
 

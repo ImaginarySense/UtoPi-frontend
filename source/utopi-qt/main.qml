@@ -9,7 +9,7 @@ Window {
     width: 264
     height: 176
     title: qsTr("Utopi: Emergency Computer")
-
+    property int screen:  0
     ColumnLayout {
         id: view
         spacing: 0
@@ -22,18 +22,26 @@ Window {
             border.color: "black"
             border.width: 4
             Button {
-                id: test
-                text: "Test"
+                id: fast
+                x: 0
+                text: "Fast"
                 onClicked: {
-                    screen.test();
+                    fastRefresh();
                 }
             }
             Button {
-                id: changeView
+                id: partial
                 x: 100
-                text: "Switch"
+                text: "Partial"
                 onClicked: {
-//                    fastRefresh();
+                    partialRefresh();
+                }
+            }
+            Button {
+                id: full
+                x: 200
+                text: "Full"
+                onClicked: {
                     fullRefresh();
                 }
             }
@@ -41,7 +49,7 @@ Window {
         // BODY
         StackLayout {
             id: views
-            currentIndex: 0
+            currentIndex: screen
             width: Window.width
             height: Window.height-31
             Report {
@@ -57,37 +65,24 @@ Window {
     }
     // Call to Refresh
     function fastRefresh() {
+        screen = 0;
         console.log('Fast Refresh');
-        console.log('Grabbing image');
         view.grabToImage(function (frame) {
-            console.log('Image grabed');
-            console.log(frame.image);
-            screen.test(frame.image);
-//            frame.save('test.bmp', 'BMP');
-            console.log('Image saved');
+            epd.fastRefresh(frame.image);
         });
     }
     function partialRefresh() {
+        screen = 1;
         console.log('Partial Refresh');
-    }
-    function fullRefresh() {
-        console.log('Full Refresh');
-        screenGrab(function(frame) {
-            console.log('Saving Image');
-            console.log(frame);
-            screen.test(frame);
-//            frame.save('test.bmp', 'BMP');
-            console.log('Image Saved');
+        view.grabToImage(function (frame) {
+            epd.partialRefresh(frame.image);
         });
     }
-
-    //
-    function screenGrab(cb) {
-        console.log('Grabbing image');
-        view.grabToImage(function (result) {
-            console.log('Image grabbed');
-            cb(result.image);
-//             result.saveToFile('file.bmp');
+    function fullRefresh() {
+        screen = 2;
+        console.log('Full Refresh');
+        view.grabToImage(function (frame) {
+            epd.fullRefresh(frame.image);
         });
     }
 }

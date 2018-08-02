@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     //
-    engine.rootContext()->setContextProperty("screen", screen.data());
+    engine.rootContext()->setContextProperty("epd", screen.data());
 
     if (engine.rootObjects().isEmpty())
         return -1;
