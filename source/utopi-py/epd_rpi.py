@@ -30,26 +30,18 @@
 # THE SOFTWARE.
 from __future__ import unicode_literals, division, absolute_import
 
-import time
-# import spidev
+import time, socket
 from lut import LUT, QuickLUT
-# import RPi.GPIO as GPIO
 from PIL import ImageChops
 
-# Imports for BeagleBone
-from Adafruit_BBIO.SPI import SPI
-import Adafruit_BBIO.GPIO as GPIO
+import spidev
+import RPi.GPIO as GPIO
 
 # Pin definition
-# RST_PIN         = 17
-# DC_PIN          = 25
-# CS_PIN          = 8
-# BUSY_PIN        = 24
-RST_PIN         = "P9_13"
-DC_PIN          = "P9_15"
-CS_PIN          = "P9_17"
-BUSY_PIN        = "P9_11"
-
+RST_PIN         = 11
+DC_PIN          = 22
+CS_PIN          = 24
+BUSY_PIN        = 18
 
 # Display resolution
 EPD_WIDTH       = 176
@@ -122,8 +114,7 @@ class EPD(object):
         self._last_frame = None
         self._partial_refresh_count = 0
         self._init_performed = False
-        # self.spi = spidev.SpiDev(0, 0)
-        self.spi = SPI(1, 0)
+        self.spi = spidev.SpiDev(0, 0)
 
     def digital_write(self, pin, value):
         return GPIO.output(pin, value)
@@ -145,15 +136,14 @@ class EPD(object):
     def init(self):
         """ Preform the hardware initialization sequence """
         # Interface initialization:
-        # GPIO.setmode(GPIO.BCM) # This doesn't exist in BeagleBone (2 layout pins)
+        GPIO.setmode(GPIO.BCM) # This doesn't exist in BeagleBone (2 layout pins)
         GPIO.setwarnings(False)
         GPIO.setup(RST_PIN, GPIO.OUT)
         GPIO.setup(DC_PIN, GPIO.OUT)
         GPIO.setup(CS_PIN, GPIO.OUT)
         GPIO.setup(BUSY_PIN, GPIO.IN)
 
-        # self.spi.max_speed_hz = 2000000
-        self.spi.msh = 2000000 # max_speed_hz
+        self.spi.max_speed_hz = 2000000
         self.spi.mode = 0b00
         # EPD hardware init
         # The specifics of how this works or what "power optimization" actually means

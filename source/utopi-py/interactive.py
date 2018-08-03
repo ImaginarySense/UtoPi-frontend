@@ -20,8 +20,8 @@
 # SOFTWARE.
 
 from __future__ import print_function
-import epd as ePaper
-import Adafruit_BBIO.GPIO as GPIO
+import epd_rpi as ePaper
+#import Adafruit_BBIO.GPIO as GPIO
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -36,7 +36,7 @@ def main():
     print("initializing...")
     epd = ePaper.EPD()
     epd.init()
-    GPIO.setup("P9_12", GPIO.IN, pull_up_down=GPIO.PUD_UP);
+    #GPIO.setup("P9_12", GPIO.IN, pull_up_down=GPIO.PUD_UP);
 
     image = Image.new('1', (epd.width, epd.height), 255)
     draw = ImageDraw.Draw(image)
@@ -51,26 +51,26 @@ def main():
     print("Ready.")
     try:
         while True:
-            #text = input("> ")
-            key1 = GPIO.input("P9_12")
-            if key1 == False:
-                text = "Testing"
-                if loc > epd.height - 10:
-                    loc = 0
-                    image = Image.new('1', (epd.width, epd.height), 255)
-                    draw = ImageDraw.Draw(image)
-                    full_update = True
-    
-                draw.text((5, loc), text, font=font, fill=0)
-                if full_update:
-                    print("Doing a full update...")
-                    epd.display_frame(image)
-                    full_update = False
-                else:
-                    print("...")
-                    epd.display_partial_frame(image, 0, loc, 20, epd.width, fast=True)
+            text = input("> ")
+            #key1 = GPIO.input("P9_12")
+            #if key1 == False:
+            #text = "Testing"
+            if loc > epd.height - 10:
+                loc = 0
+                image = Image.new('1', (epd.width, epd.height), 255)
+                draw = ImageDraw.Draw(image)
+                full_update = True
 
-                loc += 20
+            draw.text((5, loc), text, font=font, fill=0)
+            if full_update:
+                print("Doing a full update...")
+                epd.display_frame(image)
+                full_update = False
+            else:
+                print("...")
+                epd.display_partial_frame(image, 0, loc, 20, epd.width, fast=True)
+
+            loc += 20
     except KeyboardInterrupt:
         epd.sleep()
         print("Bye!")

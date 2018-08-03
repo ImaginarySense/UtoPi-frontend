@@ -23,7 +23,7 @@
 from __future__ import print_function
 import sys
 import argparse
-# import epd as ePaper
+import epd_rpi as ePaper
 from PIL import Image
 from PIL import ImageDraw
 if sys.version_info.major < 3:
@@ -39,7 +39,7 @@ def main():
     parser.add_argument('code', metavar='refresh_code', type=int, help='specify type of screen refresh: [0=fast] | [1=partial] | [2=full]')
     parser.add_argument('image', metavar='image_path', type=argparse.FileType('rb', 0), help='path to image file')
     args = parser.parse_args()
-    
+
     # Initialize display
     print("Initializing e-paper display")
     epd = ePaper.EPD()
@@ -49,10 +49,10 @@ def main():
     frame = Image.open(args.image)
     print(frame)
     # Send image to display
-    if (args.code < 2)
+    if args.code < 2:
         epd.display_partial_frame(frame, 0, 0, epd.height, epd.width, fast=True)
-    if (args.code >= 2)
+    if args.code >= 2:
         epd.display_frame(frame)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
