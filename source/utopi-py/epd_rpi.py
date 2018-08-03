@@ -32,16 +32,15 @@ from __future__ import unicode_literals, division, absolute_import
 
 import time, socket
 from lut import LUT, QuickLUT
-from PIL import ImageChops
-
 import spidev
 import RPi.GPIO as GPIO
+from PIL import ImageChops
 
 # Pin definition
-RST_PIN         = 11
-DC_PIN          = 22
-CS_PIN          = 24
-BUSY_PIN        = 18
+RST_PIN         = 17
+DC_PIN          = 25
+CS_PIN          = 8
+BUSY_PIN        = 24
 
 # Display resolution
 EPD_WIDTH       = 176

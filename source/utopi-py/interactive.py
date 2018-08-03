@@ -41,10 +41,10 @@ def main():
     image = Image.new('1', (epd.width, epd.height), 255)
     draw = ImageDraw.Draw(image)
 
-    font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 18)
+    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 18)
     draw.text((0, 5), 'Interactive demo', font=font, fill=0)
 
-    font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 16)
+    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf', 16)
     epd.display_frame(image)
     loc = 25
     full_update = False
