@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Report.qml</file>
+        <file>Find.qml</file>
+        <file>Settings.qml</file>
+    </qresource>
+</RCC>
