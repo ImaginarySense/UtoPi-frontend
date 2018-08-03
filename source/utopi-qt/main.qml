@@ -24,6 +24,7 @@ Window {
             Button {
                 id: fast
                 x: 0
+                y: 176
                 text: "Fast"
                 onClicked: {
                     fastRefresh();
@@ -32,6 +33,7 @@ Window {
             Button {
                 id: partial
                 x: 100
+                y: 176
                 text: "Partial"
                 onClicked: {
                     partialRefresh();
@@ -40,6 +42,7 @@ Window {
             Button {
                 id: full
                 x: 200
+                y: 176
                 text: "Full"
                 onClicked: {
                     fullRefresh();
@@ -51,7 +54,7 @@ Window {
             id: views
             currentIndex: screen
             width: Window.width
-            height: Window.height-31
+            height: 176-31 // Window.height-31
             Report {
                 id: report
             }
