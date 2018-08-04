@@ -21,9 +21,12 @@
 # THE SOFTWARE.
 
 from __future__ import print_function
-import sys
+import sys, socket
 import argparse
-import epd_rpi as ePaper
+if(socket.gethostname() == "beaglebone"):
+    import epd_beaglebone as ePaper
+else:
+    import epd_rpi as ePaper
 from PIL import Image
 from PIL import ImageDraw
 if sys.version_info.major < 3:
