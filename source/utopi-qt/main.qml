@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtQuick 2.11
 
 Window {
     visible: true
@@ -10,21 +11,29 @@ Window {
     height: 176
     title: qsTr("Utopi: Emergency Computer")
 
+//    KeyHandler {
+//        id: handleKeys
+//    }
+
     //constantVar
     property int iconH:62
     property int iconW: 68
 
     property int screen:  0
     property int currentMenu:  0
-//    property int currentSubMenu: 0
+    property var possibleAction: ({status:0, report:1})
+    property int currentAction: 0;
+
+    property int currentSubMenu: 0
     property int currentStatus: 0
     property string titles: "Utopi: Emergency Computer"
     property string headerText: ""
 
     property var statusProperties: [
-        //Status subMenu Road Index 0
+        //Status subMenu Road Index 1
         [{
-             "textMsg" : "Collapsed"
+             "textMsg" : "Collapsed",
+             "status" : 1
          },
          {
              "textMsg" : "Blocked"
@@ -39,7 +48,8 @@ Window {
 
         //Status subMenu ____ Buisiness Index 2
         [{
-             "textMsg" : "Opened for business"
+             "textMsg" : "Opened for business",
+             "status" : 2
          },
          {
              "textMsg" : "Out of service"
@@ -48,7 +58,8 @@ Window {
 
         //Status subMenu Gas Index 3
         [{
-             "textMsg" : "Opened for business"
+             "textMsg" : "Opened for business",
+             "status" : 3
          },
          {
              "textMsg" : "Out of Gas"
@@ -60,7 +71,8 @@ Window {
 
         //Status subMenu _____ Services Index 4
         [{
-             "textMsg" : "Services are online"
+             "textMsg" : "Services are online",
+             "status" : 4
          },
          {
              "textMsg" : "Unstable Service"
@@ -179,6 +191,10 @@ Window {
              "serviceType" : "Food"
          }
         ]
+
+
+
+
     ]
 
 //    property var subMenuProperties: [
@@ -254,11 +270,11 @@ Window {
                 id: initialScreen
             }
 
-            Menus {
+            Menus { //Status
                 id: menus
                 sourceData: menuProperties[currentMenu]
             }
-            StatusReport {
+            StatusReport { //Report
                 id: statusReport
                 textData: statusProperties[currentStatus]
             }
@@ -271,6 +287,8 @@ Window {
         }
     }
 
+    function checkScreen() {
+    }
 
 
     // Call to Refresh

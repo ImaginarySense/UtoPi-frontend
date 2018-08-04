@@ -11,20 +11,19 @@
         <file>images/Power.png</file>
         <file>images/Shelter.png</file>
         <file>images/Water.png</file>
-
         <file>images/Banks.png</file>
         <file>images/BlockedRoad.png</file>
         <file>images/ChrgStation.png</file>
         <file>images/Dialysis.png</file>
         <file>images/Doctors.png</file>
         <file>images/Flood.png</file>
-     	<file>images/FoodAid.png</file>
+        <file>images/FoodAid.png</file>
         <file>images/Garbage.png</file>
         <file>images/Gas.png</file>
         <file>images/Hospital.png</file>
         <file>images/Landfall.png</file>
         <file>images/Mail.png</file>
-     	<file>images/Oasis.png</file>
+        <file>images/Oasis.png</file>
         <file>images/People.png</file>
         <file>images/Pets.png</file>
         <file>images/Pharmacies.png</file>
@@ -37,5 +36,6 @@
         <file>images/Report.png</file>
         <file>images/Configure.png</file>
         <file>InitialScreen.qml</file>
+        <file>KeyHandler.qml</file>
     </qresource>
 </RCC>

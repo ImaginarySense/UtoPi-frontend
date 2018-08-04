@@ -23,8 +23,8 @@ Item {
             }
             onClicked:  {
                   screen = 1
+                  currentAction = possibleAction.status
                   headerText = "Utopi: Report..."
-                  stateSelected = false
             }
         }
 
@@ -39,8 +39,8 @@ Item {
             }
             onClicked:  {
                 screen = 1
+                currentAction = possibleAction.report
                 headerText = "Status Report:"
-                stateSelected = true
             }
         }
 

@@ -46,32 +46,6 @@ Item {
                     }
                 }
 
-//                RadioButton {
-//                    text: "Collapsed"
-//                    checked: false
-//                    exclusiveGroup: roadPosGroup
-
-////                    style: RadioButtonStyle {
-////                        indicator: Rectangle {
-////                            color: "#FFFFFF"
-////                        }
-////                    }
-//                }
-//                RadioButton {
-//                    text: "Blocked"
-//                    checked: false
-//                    exclusiveGroup: roadPosGroup
-//                }
-//                RadioButton {
-//                    text: "Partially Blocked"
-//                    checked: false
-//                    exclusiveGroup: roadPosGroup
-//                }
-//                RadioButton {
-//                    text: "Clear"
-//                    checked: false
-//                    exclusiveGroup: roadPosGroup
-//                }
 
             }
         }
