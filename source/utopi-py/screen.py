@@ -21,9 +21,12 @@
 # THE SOFTWARE.
 
 from __future__ import print_function
-import sys
+import sys, socket
 import argparse
-import epd_rpi as ePaper
+if(socket.gethostname() == "beaglebone"):
+    import epd_beaglebone as ePaper
+else:
+    import epd_rpi as ePaper
 from PIL import Image
 from PIL import ImageDraw
 if sys.version_info.major < 3:
@@ -43,11 +46,12 @@ def main():
     # Initialize display
     print("Initializing e-paper display")
     epd = ePaper.EPD()
-    epd.init()
+    epd.init()  # Is this?
 
     # Get image
-    frame = Image.open(args.image)
-    print(frame)
+    frame = Image.open(args.image).rotate(90)
+    # print(frame)
+    
     # Send image to display
     if args.code < 2:
         epd.display_partial_frame(frame, 0, 0, epd.height, epd.width, fast=True)

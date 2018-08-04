@@ -18,6 +18,9 @@ int main(int argc, char *argv[])
     //
     engine.rootContext()->setContextProperty("epd", screen.data());
 
+    QObject *rootObject = qobject_cast<QObject*>(engine.rootObjects().first());
+    QMetaObject::invokeMethod(rootObject, "fastRefresh");
+
     if (engine.rootObjects().isEmpty())
         return -1;
 
