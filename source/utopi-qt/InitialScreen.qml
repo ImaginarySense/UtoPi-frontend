@@ -22,7 +22,7 @@ Item {
                 fillMode: Image.PreserveAspectFit
             }
             onClicked:  {
-                  screen = 1
+                  currentScreen = 1
                   currentAction = possibleAction.status
                   headerText = "Utopi: Report..."
             }
@@ -38,9 +38,9 @@ Item {
                 fillMode: Image.PreserveAspectFit
             }
             onClicked:  {
-                screen = 1
+                currentScreen = 1
                 currentAction = possibleAction.report
-                headerText = "Status Report:"
+                headerText = "Utopi: Status Report"
             }
         }
 
@@ -54,7 +54,8 @@ Item {
                 fillMode: Image.PreserveAspectFit
             }
             onClicked:  {
-                screen = 3
+                currentScreen = 3
+                headerText = "Utopi: Settings"
             }
         }
     }

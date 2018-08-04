@@ -796,6 +796,7 @@ qrc_qml.cpp: ../utopi-qt/qml.qrc \
 		/usr/bin/rcc \
 		../utopi-qt/Settings.qml \
 		../utopi-qt/InitialScreen.qml \
+		../utopi-qt/KeyHandler.qml \
 		../utopi-qt/Find.qml \
 		../utopi-qt/Menus.qml \
 		../utopi-qt/StatusReport.qml \

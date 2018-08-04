@@ -16,8 +16,7 @@ Item {
         columns: 3 ; columnSpacing: 14 //10
         rows: 2 ; rowSpacing: 3 //2
 
-        //Buttons
-
+        // Buttons
         Repeater {
             id: buttonGrid
             model: sourceData.length
@@ -38,16 +37,12 @@ Item {
             }
         }
 
-
-        //States
+        // States
         states: [
-
             State {
                 name: "Hovering" ; when: MouseArea.pressed
                 PropertyChanges {
                     target: buttonGrid
-
-
                 }
             }
         ]
@@ -55,15 +50,19 @@ Item {
     }
 
     function menuItemClicked(index){
-        if((currentAction===possibleAction.report) && (currentSubMenu==0 || currentSubMenu==1)) {
-            screen = 2;
-            console.log("lol")
-
+        // Determine button action s
+        if (currentAction===possibleAction.status && currentMenu>0) {
+            currentScreen = 2;
+//            else if (currentMenu!=1)
+//                currentScreen = 2;
         }
-        else {
+        else if (currentAction===possibleAction.report && currentMenu>0) {
+            currentScreen = 3;
+//            else if (currentMenu==1)
+//                currentScreen = 3;
+        }
+        else
             currentMenu = sourceData[index].screen;
-        }
-
-        console.log("button clicked: ", sourceData[index].screen);
+//        console.log("button clicked: ", sourceData[index].screen);
     }
 }

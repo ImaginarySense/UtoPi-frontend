@@ -9,80 +9,124 @@ Window {
     color: "#FFFFFF"	//default bkg color is white
     width: 264
     height: 176
-    title: qsTr("Utopi: Emergency Computer")
+    title: headerText
 
 //    KeyHandler {
 //        id: handleKeys
 //    }
-
-    //constantVar
-    property int iconH:62
+    // Menu UI Properties
+    property int iconH: 62
     property int iconW: 68
-
-    property int screen:  0
-    property int currentMenu:  0
+    // Possible Values
     property var possibleAction: ({status:0, report:1})
-    property int currentAction: 0;
-
-    property int currentSubMenu: 0
-    property int currentStatus: 0
-    property string titles: "Utopi: Emergency Computer"
-    property string headerText: ""
-
-    property var statusProperties: [
+    property var possibleReport: ({
+        "roadblock": {
+            "id": 0,
+            "statuses": validStatus.road
+        },
+        "landfall": {
+            "id": 1,
+            "statuses": validStatus.road
+        },
+        "flood": {
+            "id": 2,
+            "statuses": validStatus.road
+        },
+        "foodPlace": {
+            id: 10,
+            "statuses": validStatus.place
+        },
+        "foodAid": {
+            "id": 11,
+            "statuses": validStatus.place
+        },
+        "waterService": {
+            "id": 20,
+            "statuses": validStatus.services
+        },
+        "waterOasis": {
+            "id": 21,
+            "statuses": validStatus.place
+        },
+        "powerService": {
+            "id": 30,
+            "statuses": validStatus.services
+        },
+        "gasStation": {
+            "id": 31,
+            "statuses": validStatus.place
+        },
+        "hospital": {
+            "id": 40,
+            "statuses": validStatus.place
+        },
+        "doctor": {
+            "id": 41,
+            "statuses": validStatus.place
+        },
+        "pharmacy": {
+            "id": 42,
+            "statuses": validStatus.place
+        },
+        "dyalisis": {
+            "id": 43,
+            "statuses": validStatus.place
+        },
+        "shelter": {
+            "id": 50,
+            "statuses": validStatus.place
+        }
+    })
+    property var validStatus: ({
         //Status subMenu Road Index 1
-        [{
-             "textMsg" : "Collapsed",
-             "status" : 1
-         },
-         {
-             "textMsg" : "Blocked"
-         },
-         {
-             "textMsg" : "Partially blocked"
-         },
-         {
-             "textMsg" : "Clear"
-         }
+        roads: [
+            {
+                "textMsg" : "Collapsed",
+            },
+            {
+                "textMsg" : "Blocked"
+            },
+            {
+                "textMsg" : "Partially blocked"
+            },
+            {
+                "textMsg" : "Clear"
+            }
         ],
-
         //Status subMenu ____ Buisiness Index 2
-        [{
-             "textMsg" : "Opened for business",
-             "status" : 2
-         },
-         {
-             "textMsg" : "Out of service"
-         }
+        business: [
+            {
+                "textMsg" : "Opened for business",
+            },
+            {
+                "textMsg" : "Out of service"
+            }
+            ],
+                //Status subMenu Gas Index 3
+        gas: [
+            {
+                "textMsg" : "Opened for business",
+            },
+            {
+                "textMsg" : "Out of Gas"
+            },
+            {
+                "textMsg" : "Out of Service"
+            }
         ],
-
-        //Status subMenu Gas Index 3
-        [{
-             "textMsg" : "Opened for business",
-             "status" : 3
-         },
-         {
-             "textMsg" : "Out of Gas"
-         },
-         {
-             "textMsg" : "Out of Service"
-         }
-        ],
-
         //Status subMenu _____ Services Index 4
-        [{
-             "textMsg" : "Services are online",
-             "status" : 4
-         },
-         {
-             "textMsg" : "Unstable Service"
-         },
-         {
-             "textMsg" : "Ther is an outage"
-         }
+        services: [
+            {
+                "textMsg" : "Services are online",
+            },
+            {
+                "textMsg" : "Unstable Service"
+            },
+            {
+                "textMsg" : "Ther is an outage"
+            }
         ]
-
-    ]
+    })
 
     property var menuProperties: [
         //Menus index 0
@@ -191,23 +235,21 @@ Window {
              "serviceType" : "Food"
          }
         ]
-
-
-
-
     ]
 
-//    property var subMenuProperties: [
+    // CURRENT VALUES
+    property int currentScreen:  0
+    property int currentMenu:  0
+    property int currentAction:  0
+    property int currentStatus:  0
+    property string headerText: "Utopi: Emergency Computer"
 
-    //]
-
-
+    // LAYOUT
+    // Split Header from screen Bodies
     ColumnLayout {
         id: view
         spacing: 0
         // HEADER
-
-
         Rectangle {
             id: header
             Layout.alignment: Qt.AlignCenter
@@ -216,68 +258,34 @@ Window {
             border.color: "black"
             border.width: 4
             color: "white"
-
             Text {
-                x:8
-                y:8
-                id: headerTxt
-                text: qsTr(headerText)
+                x: 8
+                y: 8
+                id: hText
+                text: headerText
             }
-
-
-            Button {
-                id: fast
-                x: 0
-                y: 176
-                text: "Fast"
-                onClicked: {
-                    fastRefresh();
-                    screen = 0
-                    currentMenu = 0
-                    currentStatus = 0
-//                    currentSubMenu = 0
-                }
-            }
-            Button {
-                id: partial
-                x: 100
-                y: 176
-                text: "Partial"
-                onClicked: {
-                    partialRefresh();
-                }
-            }
-            Button {
-                id: full
-                x: 200
-                y: 176
-                text: "Full"
-                onClicked: {
-                    fullRefresh();
-                }
-            }
-
         }
         // BODY
         StackLayout {
             id: views
-            currentIndex: screen
+            currentIndex: currentScreen
             width: Window.width
             height: 176-31 // Window.height-31
-
-
+            // SCREEN SELECTION
             InitialScreen {
                 id: initialScreen
             }
-
-            Menus { //Status
+            Menus {
                 id: menus
                 sourceData: menuProperties[currentMenu]
             }
-            StatusReport { //Report
+            StatusReport {
                 id: statusReport
-                textData: statusProperties[currentStatus]
+                textData: validStatus[currentStatus]
             }
+//            GPS {
+//                id: gps
+//            }
             Find {
                 id: find
             }
@@ -286,12 +294,38 @@ Window {
             }
         }
     }
-
-    function checkScreen() {
+    // DEBUGGING UI
+    Button {
+        id: fast
+        x: 0
+        y: 176
+        text: "Reset"
+        onClicked: {
+            fullRefresh();
+            currentScreen = 0
+            currentMenu = 0
+            currentStatus = 0
+        }
     }
-
-
-    // Call to Refresh
+    Button {
+        id: partial
+        x: 100
+        y: 176
+        text: "Fast"
+        onClicked: {
+            fastRefresh();
+        }
+    }
+    Button {
+        id: full
+        x: 200
+        y: 176
+        text: "Full"
+        onClicked: {
+            fullRefresh();
+        }
+    }
+    // GLOBAL FUNCTIONS: Screen Refresh
     function fastRefresh() {
         console.log('Fast Refresh');
         view.grabToImage(function (frame) {

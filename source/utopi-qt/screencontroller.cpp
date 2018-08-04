@@ -29,12 +29,12 @@ void ScreenController::refresh(RefreshTypes refreshCode, QVariant frame)
 
     // Cast enum to equivalent number string
     QString code = static_cast<QString>(refreshCode+48);
-    qDebug() << code;
+//    qDebug() << code;
 
     // Prepare image for use in device
     QImage image = frame.value<QImage>();
-    qDebug() << "Image";
-    qDebug() <<  image;
+//    qDebug() << "Image";
+//    qDebug() <<  image;
     QTemporaryFile file;
     image.save(IMG_PATH);
 
@@ -62,5 +62,5 @@ void ScreenController::refresh(RefreshTypes refreshCode, QVariant frame)
     if (!process->waitForFinished())
         return;
     QByteArray result = process->readAllStandardError();
-    qDebug() << result;
+//    qDebug() << result;
 }

@@ -23,7 +23,6 @@ Item {
 
         }
 
-
         GroupBox {
             x: 14
             y: 46
@@ -35,7 +34,6 @@ Item {
                     id: radioLayout
                     model: textData.length
                     delegate: RadioButton {
-
                             text: textData[index].textMsg
                             checked: false
                             exclusiveGroup: roadPosGroup
@@ -45,11 +43,7 @@ Item {
                         }
                     }
                 }
-
-
             }
         }
-
     }
-
 }
