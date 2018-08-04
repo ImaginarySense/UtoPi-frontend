@@ -2,6 +2,7 @@ import QtQuick 2.4
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtQuick.Controls.Styles 1.4
 
 Item {
         property var sourceData: []
@@ -9,6 +10,8 @@ Item {
             id: grid
             x: 16
             y: 3
+            width: Window.width
+            height: Window.height-31
             columns: 3 ; columnSpacing: 14 //10
             rows: 2 ; rowSpacing: 3 //2
 
@@ -41,6 +44,7 @@ Item {
                     name: "Hovering" ; when: hovered
                     PropertyChanges {
                         target: firstIcon
+
 
 
                     }

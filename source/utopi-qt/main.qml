@@ -16,13 +16,15 @@ Window {
 
     property int screen:  0
     property int currentMenu:  0
+//    property int currentSubMenu: 0
     property int currentStatus: 0
     property string titles: "Utopi: Emergency Computer"
+    property string headerText: ""
 
     property var statusProperties: [
-        //Status Index 0
+        //Status subMenu Road Index 0
         [{
-             "textMsg" : "Collapsed",
+             "textMsg" : "Collapsed"
          },
          {
              "textMsg" : "Blocked"
@@ -33,6 +35,39 @@ Window {
          {
              "textMsg" : "Clear"
          }
+        ],
+
+        //Status subMenu ____ Buisiness Index 2
+        [{
+             "textMsg" : "Opened for business"
+         },
+         {
+             "textMsg" : "Out of service"
+         }
+        ],
+
+        //Status subMenu Gas Index 3
+        [{
+             "textMsg" : "Opened for business"
+         },
+         {
+             "textMsg" : "Out of Gas"
+         },
+         {
+             "textMsg" : "Out of Service"
+         }
+        ],
+
+        //Status subMenu _____ Services Index 4
+        [{
+             "textMsg" : "Services are online"
+         },
+         {
+             "textMsg" : "Unstable Service"
+         },
+         {
+             "textMsg" : "Ther is an outage"
+         }
         ]
 
     ]
@@ -42,18 +77,23 @@ Window {
         [{
              "imageUrl": "qrc:/images/Roads.png",
              "screen": 1 //roads
+
          },
          {
              "imageUrl": "qrc:/images/Food.png",
              "screen": 2
+
          },
          {
              "imageUrl": "qrc:/images/Water.png",
-             "screen" : 3
+             "screen" : 3,
+             "serviceType" : "Water"
+
          },
          {
              "imageUrl": "qrc:/images/Power.png",
-             "screen" : 4
+             "screen" : 4,
+             "serviceType" : "Power"
          },
          {
              "imageUrl": "qrc:/images/Health.png",
@@ -61,7 +101,8 @@ Window {
          },
          {
              "imageUrl": "qrc:/images/Shelter.png",
-             "screen" : 6
+             "screen" : 6,
+             "serviceType" : "Shelter"
          }
         ],
 
@@ -79,21 +120,25 @@ Window {
         ],
         //SubMenu Food Index 2
         [{
-             "imageUrl": "qrc:/images/Place.png"
+             "imageUrl": "qrc:/images/Place.png",
+             "businessType" : "Food"
 
          },
          {
-             "imageUrl": "qrc:/images/FoodAid.png"
+             "imageUrl": "qrc:/images/FoodAid.png",
+             "serviceType" : "Food"
          }
         ],
 
         //SubMenu Water  Index 3
         [{
-             "imageUrl": "qrc:/images/Oasis.png"
+             "imageUrl": "qrc:/images/Oasis.png",
+             "serviceType" : "Water"
 
          },
          {
-             "imageUrl": "qrc:/images/SvcProviders.png"
+             "imageUrl": "qrc:/images/SvcProviders.png",
+             "serviceType" : "Water"
          }
         ],
 
@@ -111,31 +156,42 @@ Window {
 
         //SubMenu  Health  Index 5
         [{
-             "imageUrl": "qrc:/images/Hospital.png"
+             "imageUrl": "qrc:/images/Hospital.png",
+             "serviceType" : "Hospital"
          },
          {
-             "imageUrl": "qrc:/images/Doctors.png"
+             "imageUrl": "qrc:/images/Doctors.png",
+             "serviceType" : "Doctors"
          },
          {
-             "imageUrl": "qrc:/images/Pharmacies.png"
+             "imageUrl": "qrc:/images/Pharmacies.png",
+             "businessType" : "Pharmacies"
          },
          {
-             "imageUrl": "qrc:/images/Dialysis.png"
+             "imageUrl": "qrc:/images/Dialysis.png",
+             "serviceType" : "Dialysis"
          }
         ],
 
         //SubMenu  Health  Index 6
         [{
-             "imageUrl": "qrc:/images/ShelterHome.png"
+             "imageUrl": "qrc:/images/ShelterHome.png",
+             "serviceType" : "Food"
          }
         ]
     ]
+
+//    property var subMenuProperties: [
+
+    //]
 
 
     ColumnLayout {
         id: view
         spacing: 0
         // HEADER
+
+
         Rectangle {
             id: header
             Layout.alignment: Qt.AlignCenter
@@ -144,6 +200,15 @@ Window {
             border.color: "black"
             border.width: 4
             color: "white"
+
+            Text {
+                x:8
+                y:8
+                id: headerTxt
+                text: qsTr(headerText)
+            }
+
+
             Button {
                 id: fast
                 x: 0
@@ -154,6 +219,7 @@ Window {
                     screen = 0
                     currentMenu = 0
                     currentStatus = 0
+//                    currentSubMenu = 0
                 }
             }
             Button {
@@ -204,6 +270,9 @@ Window {
             }
         }
     }
+
+
+
     // Call to Refresh
     function fastRefresh() {
         console.log('Fast Refresh');

@@ -33,9 +33,9 @@
         <file>images/SvcProviders.png</file>
         <file>images/SvcProvidersE.png</file>
         <file>images/Transportation.png</file>
-        <file>images/Water.png</file>
-
-
+        <file>images/Status.png</file>
+        <file>images/Report.png</file>
+        <file>images/Configure.png</file>
         <file>InitialScreen.qml</file>
     </qresource>
 </RCC>

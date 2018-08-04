@@ -733,9 +733,10 @@ qrc_qml.cpp: ../utopi-qt/qml.qrc \
 		../utopi-qt/images/Pharmacies.png \
 		../utopi-qt/images/SvcProviders.png \
 		../utopi-qt/images/Water.png \
-		../utopi-qt/images/Water.png \
+		../utopi-qt/images/Status.png \
 		../utopi-qt/images/ChrgStation.png \
 		../utopi-qt/images/Landfall.png \
+		../utopi-qt/images/Report.png \
 		../utopi-qt/images/People.png \
 		../utopi-qt/images/Roads.png \
 		../utopi-qt/images/Hospital.png \
@@ -745,6 +746,7 @@ qrc_qml.cpp: ../utopi-qt/qml.qrc \
 		../utopi-qt/images/FoodAid.png \
 		../utopi-qt/images/Mail.png \
 		../utopi-qt/images/Pets.png \
+		../utopi-qt/images/Configure.png \
 		../utopi-qt/images/Garbage.png \
 		../utopi-qt/images/Place.png
 	/Users/Maria_Cordero/Qt/5.11.1/clang_64/bin/rcc -name qml ../utopi-qt/qml.qrc -o qrc_qml.cpp
