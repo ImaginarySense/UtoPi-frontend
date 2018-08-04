@@ -217,6 +217,7 @@ DIST          = ../../../../Qt/5.11.1/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.11.1/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.11.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.11.1/clang_64/mkspecs/features/spec_post.prf \
+		../utopi-qt/.qmake.stash \
 		../../../../Qt/5.11.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.11.1/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/5.11.1/clang_64/mkspecs/features/toolchain.prf \
@@ -422,6 +423,7 @@ Makefile: ../utopi-qt/utopi-qt.pro ../../../../Qt/5.11.1/clang_64/mkspecs/macx-c
 		../../../../Qt/5.11.1/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.11.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.11.1/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.11.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.11.1/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/5.11.1/clang_64/mkspecs/features/toolchain.prf \
@@ -616,6 +618,7 @@ Makefile: ../utopi-qt/utopi-qt.pro ../../../../Qt/5.11.1/clang_64/mkspecs/macx-c
 ../../../../Qt/5.11.1/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.11.1/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt/5.11.1/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/5.11.1/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.11.1/clang_64/mkspecs/features/mac/sdk.prf:
 ../../../../Qt/5.11.1/clang_64/mkspecs/features/toolchain.prf:
@@ -691,6 +694,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r utopi-qt.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -710,9 +714,39 @@ compiler_rcc_clean:
 qrc_qml.cpp: ../utopi-qt/qml.qrc \
 		../../../../Qt/5.11.1/clang_64/bin/rcc \
 		../utopi-qt/Settings.qml \
-		../utopi-qt/Report.qml \
+		../utopi-qt/InitialScreen.qml \
 		../utopi-qt/Find.qml \
-		../utopi-qt/main.qml
+		../utopi-qt/Menus.qml \
+		../utopi-qt/StatusReport.qml \
+		../utopi-qt/main.qml \
+		../utopi-qt/images/Gas.png \
+		../utopi-qt/images/BlockedRoad.png \
+		../utopi-qt/images/Food.png \
+		../utopi-qt/images/Banks.png \
+		../utopi-qt/images/Oasis.png \
+		../utopi-qt/images/SvcProvidersE.png \
+		../utopi-qt/images/Doctors.png \
+		../utopi-qt/images/Transportation.png \
+		../utopi-qt/images/Dialysis.png \
+		../utopi-qt/images/Flood.png \
+		../utopi-qt/images/Power.png \
+		../utopi-qt/images/Pharmacies.png \
+		../utopi-qt/images/SvcProviders.png \
+		../utopi-qt/images/Water.png \
+		../utopi-qt/images/Water.png \
+		../utopi-qt/images/ChrgStation.png \
+		../utopi-qt/images/Landfall.png \
+		../utopi-qt/images/People.png \
+		../utopi-qt/images/Roads.png \
+		../utopi-qt/images/Hospital.png \
+		../utopi-qt/images/ShelterHome.png \
+		../utopi-qt/images/Health.png \
+		../utopi-qt/images/Shelter.png \
+		../utopi-qt/images/FoodAid.png \
+		../utopi-qt/images/Mail.png \
+		../utopi-qt/images/Pets.png \
+		../utopi-qt/images/Garbage.png \
+		../utopi-qt/images/Place.png
 	/Users/Maria_Cordero/Qt/5.11.1/clang_64/bin/rcc -name qml ../utopi-qt/qml.qrc -o qrc_qml.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
