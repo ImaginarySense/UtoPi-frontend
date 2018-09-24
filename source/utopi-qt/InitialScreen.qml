@@ -24,7 +24,7 @@ Item {
             onClicked:  {
                   currentScreen = 1
                   currentAction = possibleAction.status
-                  headerText = "Utopi: Report..."
+                  headerText = "Utopi: Generate Report"
             }
         }
 
@@ -40,7 +40,7 @@ Item {
             onClicked:  {
                 currentScreen = 1
                 currentAction = possibleAction.report
-                headerText = "Utopi: Status Report"
+                headerText = "Utopi: Find Nearby..."
             }
         }
 
@@ -55,6 +55,7 @@ Item {
             }
             onClicked:  {
                 currentScreen = 3
+                currentAction = possibleAction.config
                 headerText = "Utopi: Settings"
             }
         }

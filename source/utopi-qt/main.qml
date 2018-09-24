@@ -7,8 +7,8 @@ import QtQuick 2.11
 Window {
     visible: true
     color: "#FFFFFF"	//default bkg color is white
-    width: 264
-    height: 176
+    width: 360 // width: 264
+    height: 215 // height: 176
     title: headerText
 
 //    KeyHandler {
@@ -17,8 +17,10 @@ Window {
     // Menu UI Properties
     property int iconH: 62
     property int iconW: 68
-    // Possible Values
-    property var possibleAction: ({status:0, report:1})
+    // BEGIN FINITE STATE MACHINE STATES
+    // 1st menu layer, select action to perform
+    property var possibleAction: ({status: 1, report: 2, config: 3})
+    // 2nd menu layer, select type of report
     property var possibleReport: ({
         "roadblock": {
             "id": 0,
@@ -77,6 +79,7 @@ Window {
             "statuses": validStatus.place
         }
     })
+    // 3rd menu layer, select among possible statuses
     property var validStatus: ({
         //Status subMenu Road Index 1
         roads: [
@@ -127,7 +130,8 @@ Window {
             }
         ]
     })
-
+    // END FINITE STATE MACHINE STATES
+    // BEGIN MENU UI DEFINITIONS
     property var menuProperties: [
         //Menus index 0
         [{
@@ -237,23 +241,23 @@ Window {
         ]
     ]
 
-    // CURRENT VALUES
+    // CURRENT STATES
     property int currentScreen:  0
     property int currentMenu:  0
     property int currentAction:  0
     property int currentStatus:  0
-    property string headerText: "Utopi: Emergency Computer"
+    property string headerText: "UtoPi: Emergency Computer"
 
-    // LAYOUT
-    // Split Header from screen Bodies
+    // VIEW LAYOUT
+    // Split Header from screen bodies
     ColumnLayout {
         id: view
         spacing: 0
         // HEADER
         Rectangle {
             id: header
-            Layout.alignment: Qt.AlignCenter
-            width: Window.width
+            Layout.alignment: Qt.AlignLeft
+            width: 264 // Window.width
             height: 31
             border.color: "black"
             border.width: 4
@@ -302,6 +306,8 @@ Window {
         text: "Reset"
         onClicked: {
             fullRefresh();
+            headerText = 'UtoPi: Emergency Computer'
+            currentAction = 0
             currentScreen = 0
             currentMenu = 0
             currentStatus = 0
@@ -324,6 +330,30 @@ Window {
         onClicked: {
             fullRefresh();
         }
+    }
+    Label {
+        text: "Current action: " + currentAction
+        x: 264
+        y: 0+31
+        font.pixelSize: 10
+    }
+    Label {
+        text: "Current screen: " + currentScreen
+        x: 264
+        y: 12+31
+        font.pixelSize: 10
+    }
+    Label {
+        text: "Current menu: " + currentMenu
+        x: 264
+        y: 24+31
+        font.pixelSize: 10
+    }
+    Label {
+        text: "Current status: " + currentStatus
+        x: 264
+        y: 36+31
+        font.pixelSize: 10
     }
     // GLOBAL FUNCTIONS: Screen Refresh
     function fastRefresh() {
