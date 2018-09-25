@@ -185,7 +185,7 @@ Window {
 
         //SubMenu Road  Index 1
         [{
-             "imageUrl": "qrc:/images/BlockedRoad.png"
+            "imageUrl": "qrc:/images/BlockedRoad.png"
 
          },
          {
@@ -262,6 +262,7 @@ Window {
     property int currentScreen:  0
     property int currentMenu:  0
     property int currentAction:  0
+    property int currentReport:  0
     property int currentStatus:  0
     property string headerText: "UtoPi: Emergency Computer"
 
@@ -327,6 +328,7 @@ Window {
             currentAction = 0
             currentScreen = 0
             currentMenu = 0
+            currentReport = 0
             currentStatus = 0
         }
     }
@@ -367,9 +369,15 @@ Window {
         font.pixelSize: 10
     }
     Label {
-        text: "Current status: " + currentStatus
+        text: "Current report: " + currentReport
         x: 264
         y: 36+31
+        font.pixelSize: 10
+    }
+    Label {
+        text: "Current status: " + currentStatus
+        x: 264
+        y: 48+31
         font.pixelSize: 10
     }
     // GLOBAL FUNCTIONS: Screen Refresh

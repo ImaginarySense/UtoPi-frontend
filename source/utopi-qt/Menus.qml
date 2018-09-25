@@ -47,7 +47,6 @@ Item {
                     source: sourceData[index].imageUrl
                     fillMode: Image.PreserveAspectFit
                 }
-
                 onClicked: {
                     menuItemClicked(index)
                 }
@@ -66,20 +65,19 @@ Item {
 
     }
 
-    function menuItemClicked(index){
+    function menuItemClicked(index) {
         // Determine button action s
         if (currentAction===possibleAction.status && currentMenu>0) {
             currentScreen = 2;
-//            else if (currentMenu!=1)
-//                currentScreen = 2;
+            console.log('INDEX: ' + index)
+            currentReport = sourceData[index].screen
         }
         else if (currentAction===possibleAction.report && currentMenu>0) {
             currentScreen = 3;
-//            else if (currentMenu==1)
-//                currentScreen = 3;
         }
-        else
+        else {
             currentMenu = sourceData[index].screen;
-//        console.log("button clicked: ", sourceData[index].screen);
+        }
+        console.log("button clicked: ", sourceData[index].screen);
     }
 }

@@ -1,6 +1,5 @@
 // Copyright 2018 Imaginary Sense <support@imaginary.tech>
 // Copyright 2018 María A. Cordero Pérez <maria@imaginary.tech>
-// Copyright 2018 Victor A. Ortiz Alvarado <va2ron1@imaginary.tech>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
