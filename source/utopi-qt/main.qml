@@ -186,7 +186,6 @@ Window {
         //SubMenu Road  Index 1
         [{
             "imageUrl": "qrc:/images/BlockedRoad.png"
-
          },
          {
              "imageUrl": "qrc:/images/Landfall.png"

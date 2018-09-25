@@ -78,6 +78,6 @@ Item {
         else {
             currentMenu = sourceData[index].screen;
         }
-        console.log("button clicked: ", sourceData[index].screen);
+        console.log("Loading: sourceData[index].screen", sourceData[index].screen);
     }
 }
