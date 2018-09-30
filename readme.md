@@ -1,3 +1,6 @@
-# Utopi E-paper Frontend
+# UtoPi Emergency Computer Frontend
+QT frontend and ePaper related code
 
-Made with GNU Image Manipulation Program (GIMP) version 2.10.4.
+## Graphics prepared using
++ GNU Image Manipulation Program (GIMP) v2.10.4
++ Inkscape v0.92
